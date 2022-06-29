@@ -1,13 +1,13 @@
 header {
-	background: #fff;
-	padding: 10px 20px;
-	border-bottom: 2px solid #e6eaee;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    background: #fff;
+    padding: 10px 20px;
+    border-bottom: 2px solid #e6eaee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .user-email {
-	font-weight: bold;
-	margin-right: 15px;
+    font-weight: bold;
+    margin-right: 15px;
 }

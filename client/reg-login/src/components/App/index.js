@@ -8,31 +8,35 @@ import UserDetails from '../UserDetails';
 import './app.css';
 
 const App = () => {
-	const [isVisibleLoginForm, setIsVisibleLoginForm] = useState(false);
-	const { auth } = useContext(AuthContext);
+    const [isVisibleLoginForm, setIsVisibleLoginForm] = useState(false);
+    const { auth } = useContext(AuthContext);
 
-	const toggleLoginForm = () => {
-		setIsVisibleLoginForm(!isVisibleLoginForm);
-	};
+    const toggleLoginForm = () => {
+        setIsVisibleLoginForm(!isVisibleLoginForm);
+    };
 
-	useLayoutEffect(() => {
-		if (localStorage.getItem('token')) {
-			auth.checkAuth();
-		}
-	}, []);
+    useLayoutEffect(() => {
+        if (localStorage.getItem('token')) {
+            auth.checkAuth();
+        }
+    }, []);
 
-	if (auth.isLoading) {
-		return <Loading />;
-	}
+    if (auth.isLoading) {
+        return <Loading />;
+    }
 
-	return (
-		<div className='wrapper'>
-			<Header isVisibleLoginForm={isVisibleLoginForm} toggleLoginForm={toggleLoginForm} />
-			<main>
-				{auth.isLoggedIn ? <UserDetails /> : <div className='form-container'>{isVisibleLoginForm ? <LoginForm /> : <RegisterForm />}</div>}
-			</main>
-		</div>
-	);
+    return (
+        <div className='wrapper'>
+            <Header isVisibleLoginForm={isVisibleLoginForm} toggleLoginForm={toggleLoginForm} />
+            <main>
+                {auth.isLoggedIn ? (
+                    <UserDetails />
+                ) : (
+                    <div className='form-container'>{isVisibleLoginForm ? <LoginForm /> : <RegisterForm />}</div>
+                )}
+            </main>
+        </div>
+    );
 };
 
 export default App;
