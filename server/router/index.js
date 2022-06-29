@@ -5,9 +5,9 @@ const { validateConfirmPassword, validateEmail, validateFirstName, validateLastN
 const authMiddleware = require('../middlewares/auth');
 
 router.post(
-	'/register',
-	[validateFirstName, validateLastName, validateEmail, validatePassword, validateConfirmPassword],
-	userController.registration
+    '/register',
+    [validateFirstName, validateLastName, validateEmail, validatePassword, validateConfirmPassword],
+    userController.registration
 );
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
