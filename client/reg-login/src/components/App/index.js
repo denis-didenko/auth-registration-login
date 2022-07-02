@@ -4,7 +4,7 @@ import Loading from '../Loading';
 import Header from '../Header';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
-import UserDetails from '../UserDetails';
+import Users from '../Users';
 import './app.css';
 
 const App = () => {
@@ -30,7 +30,7 @@ const App = () => {
             <Header isVisibleLoginForm={isVisibleLoginForm} toggleLoginForm={toggleLoginForm} />
             <main>
                 {auth.isLoggedIn ? (
-                    <UserDetails />
+                    <Users />
                 ) : (
                     <div className='form-container'>{isVisibleLoginForm ? <LoginForm /> : <RegisterForm />}</div>
                 )}
