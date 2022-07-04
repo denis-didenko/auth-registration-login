@@ -1,4 +1,5 @@
 const { check } = require('express-validator');
+const UserModel = require('../models/user');
 
 module.exports = {
     validateFirstName: check('firstName')
@@ -11,7 +12,17 @@ module.exports = {
         .escape()
         .isLength({ min: 2, max: 20 })
         .withMessage('Last name must be between 2 and 20 characters'),
-    validateEmail: check('email').trim().escape().isEmail().withMessage('Email must be valid'),
+    validateEmail: check('email')
+        .trim()
+        .escape()
+        .isEmail()
+        .withMessage('Email must be valid')
+        .custom(async (email, { req }) => {
+            const user = await UserModel.findOne({ email });
+            if (user) {
+                return Promise.reject('User with this email already exists');
+            }
+        }),
     validatePassword: check('password')
         .trim()
         .escape()

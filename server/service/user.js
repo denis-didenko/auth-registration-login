@@ -67,6 +67,26 @@ class UserService {
     async getUsers() {
         return await UserModel.find();
     }
+
+    async googleSign({ email, given_name: firstName, family_name: lastName }) {
+        const candidate = await UserModel.findOne({ email });
+        if (candidate) {
+            const userDto = new UserDto(candidate);
+            const tokens = tokenService.generateTokens({ ...userDto });
+            await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+            return { ...tokens, user: userDto };
+        }
+
+        const hashPassword = await bcrypt.hash(email, 3);
+        const user = await UserModel.create({ email, password: hashPassword, firstName, lastName });
+        const userDto = new UserDto(user);
+
+        const tokens = tokenService.generateTokens({ ...userDto });
+        await tokenService.saveToken(userDto.id, tokens.refreshToken);
+
+        return { ...tokens, user: userDto };
+    }
 }
 
 module.exports = new UserService();

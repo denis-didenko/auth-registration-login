@@ -28,10 +28,11 @@ const RegisterForm = () => {
         e.preventDefault();
 
         const response = await auth.register(formData);
+        console.log('response: ', response);
+        if (!response) return;
         if (response?.data?.errors) {
             validateForm(response.data.errors);
         } else {
-            console.log('reset');
             resetForm();
         }
     };

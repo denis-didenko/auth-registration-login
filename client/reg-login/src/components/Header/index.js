@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import AuthContext from '../../context/auth';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
 import './header.css';
 
 const Header = ({ toggleLoginForm, isVisibleLoginForm }) => {
@@ -17,9 +19,20 @@ const Header = ({ toggleLoginForm, isVisibleLoginForm }) => {
                         </button>
                     </>
                 ) : (
-                    <button className='forms-switch-btn' onClick={toggleLoginForm}>
-                        {isVisibleLoginForm ? 'Register' : 'Login'}
-                    </button>
+                    <div className='login-btns'>
+                        <button className='forms-switch-btn' onClick={toggleLoginForm}>
+                            {isVisibleLoginForm ? 'Register' : 'Login'}
+                        </button>
+                        <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                const decoded = jwt_decode(credentialResponse.credential);
+                                auth.googleSign(decoded);
+                            }}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                        />
+                    </div>
                 )}
             </div>
         </header>

@@ -11,3 +11,11 @@ header {
     font-weight: bold;
     margin-right: 15px;
 }
+
+.login-btns {
+    display: flex;
+}
+
+.login-btns .forms-switch-btn {
+    margin-right: 20px;
+}

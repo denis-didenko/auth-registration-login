@@ -27,7 +27,7 @@ export const AuthContextProvider = props => {
 
                 return response;
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         },
 
@@ -43,7 +43,7 @@ export const AuthContextProvider = props => {
 
                 return response;
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         },
 
@@ -52,6 +52,22 @@ export const AuthContextProvider = props => {
                 localStorage.removeItem('token');
                 setIsLoggedIn(false);
                 setUser({});
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        googleSign: async formData => {
+            try {
+                const response = await API.post('/googlesign', formData);
+
+                if (response.data.user) {
+                    localStorage.setItem('token', response.data.accessToken);
+                    setIsLoggedIn(true);
+                    setUser(response.data.user);
+                }
+
+                return response;
             } catch (error) {
                 console.log(error);
             }
