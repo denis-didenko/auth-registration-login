@@ -19,7 +19,8 @@ const App = () => {
         if (localStorage.getItem('token')) {
             auth.checkAuth();
         }
-    }, [auth]);
+        // eslint-disable-next-line
+    }, []);
 
     if (auth.isLoading) {
         return <Loading />;
