@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//export const API_URL = 'http://localhost:5000/user';
 export const API_URL = 'http://localhost:5000/user';
 
 const API = axios.create({
