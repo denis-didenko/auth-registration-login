@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //export const API_URL = 'http://localhost:5000/user';
-export const API_URL = 'http://localhost:5000/user';
+export const API_URL = 'https://registration-login-auth.herokuapp.com/user';
 
 const API = axios.create({
     baseURL: API_URL,
