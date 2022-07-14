@@ -4,6 +4,7 @@
 * React (hooks)
 * Context API
 * Auth 
+* Google OAuth
 * Axios
 
 
