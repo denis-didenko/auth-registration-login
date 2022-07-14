@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const FormItem = ({ name, label, inputType = 'text', error, onInputChange }) => {
     return (
         <div className={error.length ? 'form-item error-item' : 'form-item'}>
