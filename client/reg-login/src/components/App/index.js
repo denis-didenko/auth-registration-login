@@ -19,7 +19,7 @@ const App = () => {
         if (localStorage.getItem('token')) {
             auth.checkAuth();
         }
-    }, []);
+    }, [auth]);
 
     if (auth.isLoading) {
         return <Loading />;
